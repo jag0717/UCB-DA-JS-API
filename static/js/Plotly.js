@@ -39,7 +39,7 @@ function getData(sample_id)
 
 	Plotly.d3.json(url, function(error, data) {
 		if (error) return console.warn(error);
-		console.log("otu data:" + data);
+		// console.log("otu data:" + data);
 		otu = data;
 
 	url = "/samples/"+ sample_id;	
@@ -74,8 +74,10 @@ function getData(sample_id)
 		updatePiePlot(data, pie_desc);
 		updateScatterPlot(data, otu_desc);
 
-	}); 	});
+	}); 	
 	gaugeChart(sample_id);
+
+	});
 } 
 
 function updatePiePlot(data,desc)
