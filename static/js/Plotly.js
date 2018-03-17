@@ -41,7 +41,6 @@ function getData(sample_id)
 		if (error) return console.warn(error);
 		console.log("otu data:" + data);
 		otu = data;
-	});
 
 	url = "/samples/"+ sample_id;	
 	console.log(url);
@@ -75,7 +74,7 @@ function getData(sample_id)
 		updatePiePlot(data, pie_desc);
 		updateScatterPlot(data, otu_desc);
 
-	});
+	}); 	});
 	gaugeChart(sample_id);
 } 
 
