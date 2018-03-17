@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Belly Button Biodiversity</title>  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin=“anonymous”>
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+  <div class="container-fluid" >
+      <!-- jombotron text -->
+      <div class="jumbotron text-center" style="min-height: 300px;">
+          <h1>Belly Button Biodiversity</h1>  
+          <h1>Dashboard</h1>  
+          <p> Use the interactive charts below to explore the dataset</p>
+      </div>
+      <div class="row"> 
+          <div class="col-md-2">
+              <!-- Select Sample ID -->
+              <div class="jumbotron text-center" style="padding-left:20px; padding-right:20px; " >             
+                <h3>SELECT Sample:</h3>
+                <select id="selDataset" style="font-size:14px;" onchange="optionChanged(this.value)" ></select> 
+              </div>
+              <!-- Meta Data -->
+              <div class="panel panel-default"> 
+                <h3 style="background-color: blue; color:white; padding:10px">Sample Metadata</h3>
+                <h5 id="metadata"></h5>
+              </div>
+          </div>
+          <!-- Pie Chart -->
+          <div class="col-md-6">
+              <div id="pie">             
+              </div>
+          </div>
+          <!-- Gauge Chart -->
+          <div class="col-md-4">
+              <div id="gauge">             
+              </div>
+          </div>
+    </div>
+    <div class="row">       
+        <!-- Scatter plot -->
+        <div class="col-md-12">
+            <div id="splot" style="height:600px;">
+            </div>
+        </div>
+    </div>
+  </div>
+    
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script> 
+  <script src="{{ url_for('static', filename='js/Plotly.js') }}"></script>
+</body>
+
+</html>
