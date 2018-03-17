@@ -39,7 +39,7 @@ function getData(sample_id)
 
 	Plotly.d3.json(url, function(error, data) {
 		if (error) return console.warn(error);
-		// console.log("otu data:" + data);
+		console.log("otu data:" + data);
 		otu = data;
 	});
 
