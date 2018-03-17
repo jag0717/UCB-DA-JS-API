@@ -48,4 +48,3 @@ msgpack-python==0.4.8
 multipledispatch==0.4.9
 nbconvert==5.3.1
 nbformat==4.4.0
-notebook==5.0.0
