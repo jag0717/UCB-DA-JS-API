@@ -150,11 +150,6 @@ Use Plotly.js to build interactive charts for your dashboard.
 
   * Update the metadata for each sample that is selected
 
-* You are welcome to create any layout that you would like for your dashboard. An example dashboard page might look something like the following.
-
-![Example Dashboard Page](Images/dashboard_part1.png)
-![Example Dashboard Page](Images/dashboard_part2.png)
-
 * Finally, deploy your Flask app to Heroku.
 
 ---
@@ -174,6 +169,7 @@ The following task is completely optional
 ## Hints
 
 * Use `Plotly.d3.json` to fetch data for all of your api routes
+
 
 * Refer to the [Plotly.js Documentation](https://plot.ly/javascript/) when building the plots
 
