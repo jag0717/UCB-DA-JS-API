@@ -42,38 +42,38 @@ function getData(sample_id)
 		// console.log("otu data:" + data);
 		otu = data;
 
-	url = "/samples/"+ sample_id;	
-	console.log(url);
+		url = "/samples/"+ sample_id;	
+		console.log(url);
 
-	Plotly.d3.json(url, function(error, data) {
-		if (error) return console.warn(error);
-		console.log("Newdata:", data);
+		Plotly.d3.json(url, function(error, data) {
+			if (error) return console.warn(error);
+			console.log("Newdata:", data);
 
-		pie_desc = [];
-		for(i=0; i<10; i++ )
-		{
-			for(j=0; j<otu.length; j++)
+			pie_desc = [];
+			for(i=0; i<10; i++ )
 			{
-				if(data['otu_ids'][i] == otu[j]['otu_id'] ) 
-					pie_desc[i] = otu[j]['desc']
+				for(j=0; j<otu.length; j++)
+				{
+					if(data['otu_ids'][i] == otu[j]['otu_id'] ) 
+						pie_desc[i] = otu[j]['desc']
+				}
 			}
-		}
-		console.log("pie desc length:"+ pie_desc.length);	
-		
-		otu_desc = [];
-		for(i=0; i<data['otu_ids'].length; i++)
-		{
-			for(j=0; j<otu.length; j++)
+			console.log("pie desc length:"+ pie_desc.length);	
+			
+			otu_desc = [];
+			for(i=0; i<data['otu_ids'].length; i++)
 			{
-				if(data['otu_ids'][i] == otu[j]['otu_id'] ) 
-					otu_desc[i] = otu[j]['desc']
+				for(j=0; j<otu.length; j++)
+				{
+					if(data['otu_ids'][i] == otu[j]['otu_id'] ) 
+						otu_desc[i] = otu[j]['desc']
+				}
 			}
-		}
-		console.log("otu desc length:"+ otu_desc.length);
-		
-		updatePiePlot(data, pie_desc);
-		updateScatterPlot(data, otu_desc);
-		gaugeChart(sample_id);
+			console.log("otu desc length:"+ otu_desc.length);
+			
+			updatePiePlot(data, pie_desc);
+			updateScatterPlot(data, otu_desc);
+			gaugeChart(sample_id);
 		
 	}); 	
 
@@ -83,24 +83,26 @@ function getData(sample_id)
 function updatePiePlot(data,desc)
 {
 	// plot pie chart
-	var pie_data = [{
-		values: data['sample_values'].slice(0,10),
-		labels: data['otu_ids'].slice(0,10),
-		text: desc,
-		textinfo: "percent",
-		type: 'pie'
-		}];
-	
-	var pie_layout = {
-		height: 500,
-		width: 500
-		};
-
 	var PIE = document.getElementById('pie');
 	console.log('restyle:', restyle);
 
 	if (restyle == 'no')
+	{
+		var pie_data = [{
+			values: data['sample_values'].slice(0,10),
+			labels: data['otu_ids'].slice(0,10),
+			text: desc,
+			textinfo: "percent",
+			type: 'pie'
+			}];
+		
+		var pie_layout = {
+			height: 500,
+			width: 500
+			};
+
 		Plotly.newPlot(PIE, pie_data, pie_layout); 	
+	}
 	else
 	{
 		Plotly.restyle(PIE, 'values', [data['sample_values'].slice(0,10)]);
@@ -111,24 +113,27 @@ function updatePiePlot(data,desc)
 function updateScatterPlot(data, desc)
 {
 	// scatter plot
-	var trace1 =
-	{
-		x: data['otu_ids'],
-		y: data['sample_values'],
-		mode: 'markers',
-		type: 'scatter',
-		text: desc,
-		hoverinfo: "x+y+text",
-		marker: { size: data['sample_values'], color: data['otu_ids'] }
-	};
-
-	sdata = [trace1];
-	
-	var layout = { title: 'Scatter Plot with a Color Dimension' };
 	var plot = document.getElementById('splot');
 
 	if (restyle == 'no')
+	{
+		var trace1 =
+		{
+			x: data['otu_ids'],
+			y: data['sample_values'],
+			mode: 'markers',
+			type: 'scatter',
+			text: desc,
+			hoverinfo: "x+y+text",
+			marker: { size: data['sample_values'], color: data['otu_ids'] }
+		};
+	
+		sdata = [trace1];
+		
+		var layout = { title: 'Scatter Plot with a Color Dimension' };
+
 		Plotly.newPlot(plot, sdata, layout);
+	}
 	else
 	{
 		Plotly.restyle(plot,'x',[data['otu_ids']] );
