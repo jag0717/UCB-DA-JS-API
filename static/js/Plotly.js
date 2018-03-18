@@ -73,9 +73,9 @@ function getData(sample_id)
 		
 		updatePiePlot(data, pie_desc);
 		updateScatterPlot(data, otu_desc);
-
+		gaugeChart(sample_id);
+		
 	}); 	
-	gaugeChart(sample_id);
 
 	});
 } 
